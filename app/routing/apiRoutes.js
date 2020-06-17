@@ -1,11 +1,12 @@
 var path = require("path");
+var friends = require("../data/friends");
 
-function apiRoutes(app) {
-    app.get("api/friends", function(req, res) {
+module.exports = function apiRoutes(app) {
+    app.get("/api/friends", function(req, res) {
         return res.json(friends);
     });
 
-    app.post("api/friends", function(req, res) {
+    app.post("/api/friends", function(req, res) {
         var buddy = req.body;
 
         buddy.routeName = buddy.name.replace(/\s+/g, "").toLowerCase();
@@ -15,5 +16,3 @@ function apiRoutes(app) {
         res.json(buddy);
     });
 };
-
-module.exports = apiRoutes;
